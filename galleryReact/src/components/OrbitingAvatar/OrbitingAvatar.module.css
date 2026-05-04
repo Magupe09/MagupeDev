@@ -86,6 +86,15 @@
 
 /* --- Media Queries ------------------------------------------------------ */
 
+/* Tablet (≥768px): skill logos más grandes */
+@media (min-width: 768px) {
+  .skillLogo {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Desktop (≥1024px): skill logos grandes */
 @media (min-width: 1024px) {
   .skillLogo {
     width: 59px;

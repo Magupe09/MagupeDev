@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import OrbitingAvatar from '../OrbitingAvatar/OrbitingAvatar';
+import { useResponsive } from '../../hooks/useResponsive';
 import styles from './NarrativeDeck.module.css';
 
 // ── Assets ────────────────────────────────────────────────────────────────
@@ -54,7 +55,7 @@ const projects = [
 // 65% → 80%  Proyecto 3 sube desde abajo al footer
 // 80% →100%  Todo asentado – layout final visible
 //
-// Layout final (desktop ≥1024px):
+// Layout final (tablet 768-1023px / desktop ≥1024px):
 //   ┌──────────────────────────────────────┐
 //   │  ┌──────────┐  ┌──────────────────┐  │  60vh
 //   │  │  Avatar  │  │  MagupeDev       │  │
@@ -69,24 +70,46 @@ const projects = [
 // ───────────────────────────────────────────────────────────────────────────
 
 function NarrativeDeck() {
+  const { isDesktop } = useResponsive();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
+  // ── Config adaptativa por viewport ──────────────────────────────────────
+  const cfg = useMemo(() => ({
+    avatarSize: isDesktop ? 380 : 260,
+    // Avatar: 0% → 25%
+    avatar: {
+      xEnd: isDesktop ? '-28vw' : '-22vw',
+      yEnd: isDesktop ? '-18vh' : '-20vh',
+      scaleStart: isDesktop ? 1.2 : 1.15,
+      scaleEnd: isDesktop ? 0.75 : 0.65,
+    },
+    // Texto: 15% → 40%
+    text: {
+      xEnd: isDesktop ? '26vw' : '20vw',
+      yEnd: isDesktop ? '-18vh' : '-20vh',
+    },
+    // Proyectos: posición X final de cada card
+    projects: isDesktop
+      ? ['-26vw', '0vw', '26vw']
+      : ['-20vw', '0vw', '20vw'],
+  }), [isDesktop]);
+
   // ═══════════════════════════════════════════════════════════════════════
   //  Avatar — 0 % → 25 %
   // ═══════════════════════════════════════════════════════════════════════
-  const avatarX = useTransform(scrollYProgress, [0, 0.25], ['0vw', '-24vw']);
-  const avatarY = useTransform(scrollYProgress, [0, 0.25], ['0vh', '-20vh']);
-  const avatarScale = useTransform(scrollYProgress, [0, 0.25], [1.15, 0.65]);
+  const avatarX = useTransform(scrollYProgress, [0, 0.25], ['0vw', cfg.avatar.xEnd]);
+  const avatarY = useTransform(scrollYProgress, [0, 0.25], ['0vh', cfg.avatar.yEnd]);
+  const avatarScale = useTransform(scrollYProgress, [0, 0.25], [cfg.avatar.scaleStart, cfg.avatar.scaleEnd]);
 
   // ═══════════════════════════════════════════════════════════════════════
   //  Texto — 15 % → 40 %
   // ═══════════════════════════════════════════════════════════════════════
-  const textX = useTransform(scrollYProgress, [0.15, 0.40], ['10vw', '22vw']);
-  const textY = useTransform(scrollYProgress, [0.15, 0.40], ['6vh', '-20vh']);
+  const textX = useTransform(scrollYProgress, [0.15, 0.40], ['10vw', cfg.text.xEnd]);
+  const textY = useTransform(scrollYProgress, [0.15, 0.40], ['6vh', cfg.text.yEnd]);
   const textOpacity = useTransform(scrollYProgress, [0.15, 0.22, 0.40], [0, 0.8, 1]);
   const textBlur = useTransform(scrollYProgress, [0.15, 0.40], [10, 0]);
   const textBrightness = useTransform(scrollYProgress, [0.15, 0.40], [0.4, 1]);
@@ -99,9 +122,9 @@ function NarrativeDeck() {
   //  Proyectos — cada uno con su ventana de animación
   // ═══════════════════════════════════════════════════════════════════════
   const projectPhases = [
-    { start: 0.35, end: 0.50, x: '-24vw' },  // izquierda
-    { start: 0.50, end: 0.65, x: '0vw' },     // centro
-    { start: 0.65, end: 0.80, x: '24vw' },    // derecha
+    { start: 0.35, end: 0.50, x: cfg.projects[0] },  // izquierda
+    { start: 0.50, end: 0.65, x: cfg.projects[1] },  // centro
+    { start: 0.65, end: 0.80, x: cfg.projects[2] },  // derecha
   ];
 
   const projectMotionValues = projectPhases.map((phase) => {
@@ -134,7 +157,7 @@ function NarrativeDeck() {
         <OrbitingAvatar
           avatarSrc={avatarImage}
           avatarAlt="MagupeDev"
-          avatarSize={300}
+          avatarSize={cfg.avatarSize}
           skills={skills}
           orbitCenter="bottom"
           shadow={{ opacity: 0.5, blur: 4, offsetY: -6 }}

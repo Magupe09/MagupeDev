@@ -39,8 +39,8 @@ body {
 .deck-desktop { display: none; }
 .deck-mobile  { display: block; }
 
-/* Desktop (≥1024px): mostrar NarrativeDeck, ocultar ScrollDeck */
-@media (min-width: 1024px) {
+/* Tablet y Desktop (≥768px): mostrar NarrativeDeck, ocultar ScrollDeck */
+@media (min-width: 768px) {
   .deck-desktop { display: block; }
   .deck-mobile  { display: none; }
 }
