@@ -1,0 +1,184 @@
+/* ==========================================================================
+   NarrativeDeck — Scroll narrativo desktop (≥1024px)
+   Cada elemento es una capa fixed que se transforma con el scroll.
+   ========================================================================== */
+
+/* ── Contenedor de scroll (altura falsa = 600vh) ───────────────────────── */
+
+.deck {
+  position: relative;
+  background-color: #0a0a0a;
+
+  /* Grid de puntos sutil (mismo que ScrollDeck) */
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 50px 50px;
+}
+
+/* Brillo radial desde el centro */
+.deck::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 198, 255, 0.06) 0%,
+    rgba(0, 198, 255, 0.02) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Capa base (todas las capas animated usan esto) ────────────────────── */
+
+.layer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Bloque de texto (nombre + bio + redes) ────────────────────────────── */
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 440px;
+  gap: 0.6rem;
+  pointer-events: auto;
+}
+
+.name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.role {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.divider {
+  width: 50px;
+  height: 2px;
+  background: rgba(0, 198, 255, 0.5);
+  border: none;
+  margin: 0.25rem 0;
+}
+
+.bio {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.socials {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.socialLink {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(0, 198, 255, 0.65);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.25s;
+}
+
+.socialLink:hover {
+  color: rgba(0, 198, 255, 1);
+}
+
+/* ── Tarjeta de proyecto (glassmorphism oscuro) ────────────────────────── */
+
+.card {
+  width: 280px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: border-color 0.3s;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 198, 255, 0.04),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.cardNumber {
+  font-family: 'Inter', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.035);
+  position: absolute;
+  top: -0.4rem;
+  right: 1rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.cardTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cardDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cardTech {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: rgba(0, 198, 255, 0.5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}

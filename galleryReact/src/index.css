@@ -1,48 +1,46 @@
 /* Importación de la fuente Inter desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 
-/* --- REGLAS CRÍTICAS PARA EL SCROLL --- */
-/* Asegura que HTML y BODY ocupen el 100% de la altura de la ventana */
-* {
-  box-sizing: border-box; /* ← IMPORTANTE: Evita problemas de sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+
 html {
-  /* No le des height/min-height al html, deja que crezca con el body */
-  
   width: 100%;
   scroll-behavior: smooth;
 }
 
 body {
-  margin: 0; 
-  padding: 0; 
-  width: 100%; 
-  min-height: 100vh; 
- 
-}
-  
-/*
-* {
-  outline: 1px solid rgba(255, 0, 0, 0.3);
-}
-  
-/*Asegura que el div donde se monta tu aplicación React (#root) también se extienda */
-#root {
-
+  margin: 0;
+  padding: 0;
   width: 100%;
   min-height: 100vh;
-  display: flex;    /* Asegura que #root use flexbox para que su hijo principal se estire */
-  flex-direction: column; 
-  background-color: var(--color-primary);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary, #fff);
   overflow-x: hidden;
 }
+
 :root {
-  --color-primary: white;
-  --color-secondary: #000000;
-  --color-accent: #161032;
-  --color-text-light: #477998;
-  --color-text-vermilion: #F64740;
+  --color-primary: #fff;
+  --color-secondary: #000;
 }
 
-/* --- FIN DE REGLAS CRÍTICAS --- */
+/* ── Responsive Deck Switcher ──────────────────────────────────────────── */
 
+/* Mobile: mostrar ScrollDeck, ocultar NarrativeDeck */
+.deck-desktop { display: none; }
+.deck-mobile  { display: block; }
+
+/* Desktop (≥1024px): mostrar NarrativeDeck, ocultar ScrollDeck */
+@media (min-width: 1024px) {
+  .deck-desktop { display: block; }
+  .deck-mobile  { display: none; }
+}

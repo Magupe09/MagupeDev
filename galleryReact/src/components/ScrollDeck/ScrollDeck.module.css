@@ -1,0 +1,60 @@
+/* ==========================================================================
+   ScrollDeck — El contenedor mágico del efecto de profundidad
+   ========================================================================== */
+
+.scrollDeck {
+  /* --- Altura falsa para generar scroll --- */
+  /* Se setea dinámicamente vía inline style: height = secciones * 100vh */
+
+  position: relative;
+  background-color: #0a0a0a;
+
+  /* --- Fondo: grid de puntos sutil --- */
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 50px 50px;
+}
+
+/* --- Brillo radial desde el centro (desktop) --- */
+.scrollDeck::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 198, 255, 0.06) 0%,
+    rgba(0, 198, 255, 0.02) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Cada sección es fixed, cubre todo el viewport --- */
+.section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity, filter;
+}
+
+/* Secciones con pointer-events desactivados para no interceptar clicks */
+.sectionInactive {
+  pointer-events: none;
+}
+
+.sectionActive {
+  pointer-events: auto;
+}

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   OrbitingAvatar — CSS Module
+   ========================================================================== */
+
+/* --- Raíz --------------------------------------------------------------- */
+
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible; /* los skills pueden salirse del área del avatar */
+}
+
+/* --- Avatar ------------------------------------------------------------- */
+
+.avatarWrapper {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* --- Sombra (pseudo-elemento, solo cuando .hasShadow está presente) ----- */
+
+.avatarWrapper.hasShadow::after {
+  content: '';
+  position: absolute;
+  bottom: var(--shadow-offset, -6px);
+  left: 75%;
+  width: 80%;
+  height: 100%;
+  transform: translate(-50%, 0) rotateX(80deg) scale(0.9, 6);
+  transform-origin: bottom;
+
+  background-image: var(--shadow-img);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
+  filter: brightness(0) saturate(100%) invert(1)
+          opacity(var(--shadow-opacity, 0.5))
+          blur(var(--shadow-blur, 4px));
+
+  z-index: -2;
+}
+
+/* --- Capa de órbitas ---------------------------------------------------- */
+
+.orbitLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* no interfiere con clicks en el avatar */
+}
+
+/* --- Wrapper de cada órbita (el que rota) ------------------------------- */
+
+.orbitWrapper {
+  /* No necesita dimensiones explícitas: rota alrededor de su propio centro
+     (definido con left/top + translate). Los logos hijos se posicionan
+     absolutamente respecto a este wrapper. */
+}
+
+/* --- Logo individual de cada skill (principal + copias de estela) ------ */
+
+.skillLogo {
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+  object-fit: contain;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 5px;
+}
+
+/* --- Media Queries ------------------------------------------------------ */
+
+@media (min-width: 1024px) {
+  .skillLogo {
+    width: 59px;
+    height: 59px;
+  }
+}

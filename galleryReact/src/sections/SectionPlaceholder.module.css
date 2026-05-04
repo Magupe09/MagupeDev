@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Placeholder styles for sections (About, Projects, Contact)
+   ========================================================================== */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.number {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.04);
+  line-height: 1;
+  user-select: none;
+}
+
+.title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 500px;
+  margin: 0;
+}
