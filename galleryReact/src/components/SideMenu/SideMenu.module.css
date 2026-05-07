@@ -116,6 +116,14 @@
   margin: 0 0 1rem;
 }
 
+.aboutText {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* ── Grid de redes sociales ────────────────────────────────────────────── */
 
 .socialGrid {

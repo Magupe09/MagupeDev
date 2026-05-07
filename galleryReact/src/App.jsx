@@ -5,15 +5,52 @@ import ScrollDeck from './components/ScrollDeck/ScrollDeck';
 import NarrativeDeck from './components/NarrativeDeck/NarrativeDeck';
 import SideMenu from './components/SideMenu/SideMenu';
 
-import HeroSection from './sections/HeroSection';
-import AboutSection from './sections/AboutSection';
-import ProjectsSection from './sections/ProjectsSection';
+import HeroCard from './sections/HeroCard';
+import ProjectCard from './sections/ProjectCard';
 
-const sections = [
-  <HeroSection key="hero" />,
-  <AboutSection key="about" />,
-  <ProjectsSection key="projects" />,
+// ── Datos de proyectos (misma fuente que NarrativeDeck) ────────────────────
+
+const projects = [
+  {
+    id: 1,
+    title: 'Gual-Tech',
+    desc: 'App para gestión de máquinas industriales en tiempo real. Monitoreo, alertas y dashboard.',
+    tech: 'React · TypeScript · Vercel',
+    url: 'https://github.com/Magupe09/Gual-Tech',
+  },
+  {
+    id: 2,
+    title: 'Sintenedor.com',
+    desc: 'App web para dark kitchen. Pedidos online, menú dinámico y gestión en tiempo real.',
+    tech: 'React · TypeScript · PostgreSQL',
+    url: 'https://github.com/Magupe09/Sintenedor.com',
+  },
+  {
+    id: 3,
+    title: 'Pizza App',
+    desc: 'PWA con Next.js para emprendimiento online. Catálogo, pedidos y notificaciones push.',
+    tech: 'Next.js · TypeScript · PWA',
+    url: 'https://github.com/Magupe09/pizza-app',
+  },
 ];
+
+// ── Deck de cartas: Hero + cada proyecto es una carta independiente ────────
+
+const cards = [
+  <HeroCard key="hero" />,
+  ...projects.map((project, i) => (
+    <ProjectCard
+      key={project.id}
+      index={i}
+      title={project.title}
+      desc={project.desc}
+      tech={project.tech}
+      url={project.url}
+    />
+  )),
+];
+
+// ── App ────────────────────────────────────────────────────────────────────
 
 function App() {
   return (
@@ -23,9 +60,9 @@ function App() {
         <NarrativeDeck />
       </div>
 
-      {/* Mobile (<768px): secciones con efecto de profundidad + menú lateral */}
+      {/* Mobile (<768px): deck de cartas con parallax + menú lateral */}
       <div className="deck-mobile">
-        <ScrollDeck sections={sections} />
+        <ScrollDeck cards={cards} />
         <SideMenu />
       </div>
     </>

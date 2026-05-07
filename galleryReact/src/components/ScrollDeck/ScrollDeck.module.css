@@ -1,15 +1,15 @@
 /* ==========================================================================
-   ScrollDeck — El contenedor mágico del efecto de profundidad
+   ScrollDeck — Deck de cartas con parallax
+   Cada carta es una capa fixed que se transforma al scrollear.
    ========================================================================== */
 
-.scrollDeck {
-  /* --- Altura falsa para generar scroll --- */
-  /* Se setea dinámicamente vía inline style: height = secciones * 100vh */
+/* ── Contenedor de scroll (altura falsa = cards × 100vh) ───────────────── */
 
+.scrollDeck {
   position: relative;
   background-color: #0a0a0a;
 
-  /* --- Fondo: grid de puntos sutil --- */
+  /* Grid de puntos sutil */
   background-image: radial-gradient(
     circle at 1px 1px,
     rgba(255, 255, 255, 0.06) 1px,
@@ -18,7 +18,7 @@
   background-size: 50px 50px;
 }
 
-/* --- Brillo radial desde el centro (desktop) --- */
+/* Brillo radial desde el centro */
 .scrollDeck::before {
   content: '';
   position: fixed;
@@ -37,8 +37,9 @@
   z-index: 0;
 }
 
-/* --- Cada sección es fixed, cubre todo el viewport --- */
-.section {
+/* ── Capa individual (cada carta del deck) ─────────────────────────────── */
+
+.layer {
   position: fixed;
   top: 0;
   left: 0;
@@ -48,13 +49,5 @@
   align-items: center;
   justify-content: center;
   will-change: transform, opacity, filter;
-}
-
-/* Secciones con pointer-events desactivados para no interceptar clicks */
-.sectionInactive {
   pointer-events: none;
-}
-
-.sectionActive {
-  pointer-events: auto;
 }

@@ -25,7 +25,7 @@ const socialLinks = [
   },
   {
     name: 'Email',
-    url: 'mailto:contacto@magupe.dev',
+    url: 'maonvacation@gmail.com',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -35,7 +35,7 @@ const socialLinks = [
   },
   {
     name: 'X',
-    url: 'https://x.com/magupe',
+    url: 'https://x.com/magupe09',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -101,6 +101,27 @@ function SideMenu() {
                 </svg>
               </button>
 
+              {/* ── Portafolio ────────────────────────────────────────── */}
+              <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>Portafolio</h3>
+                <p className={styles.aboutText}>
+                  Una muestra curada de mis proyectos, habilidades técnicas y
+                  trayectoria como desarrollador front-end. Cada proyecto refleja
+                  mi enfoque en código limpio, diseño funcional y experiencia de
+                  usuario.
+                </p>
+              </div>
+
+              {/* ── Sobre mí ───────────────────────────────────────────── */}
+              <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>Sobre mí</h3>
+                <p className={styles.aboutText}>
+                  Desarrollador Front-End apasionado por crear interfaces que no
+                  solo funcionan, sino que se sienten bien. Especializado en
+                  React, TypeScript y arquitecturas escalables.
+                </p>
+              </div>
+
               {/* ── Redes sociales ──────────────────────────────────── */}
               <div className={styles.section}>
                 <h3 className={styles.sectionTitle}>Redes</h3>
@@ -131,14 +152,14 @@ function SideMenu() {
                       <rect x="2" y="4" width="20" height="16" rx="2" />
                       <path d="M22 4L12 13 2 4" />
                     </svg>
-                    <span>contacto@magupe.dev</span>
+                    <span>maonvacation@gmail.com</span>
                   </a>
                   <div className={styles.contactItem}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                       <circle cx="12" cy="10" r="3" />
                     </svg>
-                    <span>Buenos Aires, Argentina</span>
+                    <span>Bogota Colombia</span>
                   </div>
                 </div>
               </div>

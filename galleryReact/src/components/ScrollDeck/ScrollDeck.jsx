@@ -1,44 +1,38 @@
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useScrollDeck, useSectionProgress } from '../../hooks/useScrollDeck';
+import { motion, useScroll } from 'framer-motion';
+import { useParallaxCard } from '../../hooks/useParallaxDeck';
 import styles from './ScrollDeck.module.css';
 
 /**
- * Section
+ * ParallaxLayer
  *
- * Envuelve el contenido de una sección aplicándole los efectos de
- * profundidad (scale, blur, opacity) calculados por useSectionProgress.
+ * Envuelve una carta del deck aplicándole los transforms parallax
+ * calculados por useParallaxCard. Cada layer es fixed, cubre todo
+ * el viewport y se transforma según su distancia al focus.
  *
  * @param {Object} props
- * @param {MotionValue<number>} props.scrollYProgress
+ * @param {import('framer-motion').MotionValue<number>} props.scrollYProgress
  * @param {number} props.index
- * @param {number} props.totalSections
+ * @param {number} props.totalCards
  * @param {React.ReactNode} props.children
  */
-function Section({ scrollYProgress, index, totalSections, children }) {
-  const { scale, opacity, filterValue, zIndex, rawProgress } =
-    useSectionProgress(scrollYProgress, index, totalSections);
-
-  // Solo la sección "activa" (rawProgress entre 30% y 70%) recibe eventos
-  const activeClass = rawProgress.get
-    ? undefined
-    : undefined; // MotionValue no soporta class toggling directo
-
-  // Usamos el z-index dinámico para stacking
-  // pointer-events: auto solo cuando scale ≈ 1 y opacity ≈ 1
-  // Lo manejamos con un useTransform sobre opacity
+function ParallaxLayer({ scrollYProgress, index, totalCards, children }) {
+  const { y, scale, opacity, filter, zIndex } = useParallaxCard(
+    scrollYProgress,
+    index,
+    totalCards,
+  );
 
   return (
     <motion.div
-      className={styles.section}
+      className={styles.layer}
       style={{
+        y,
         scale,
         opacity,
-        filter: filterValue,
+        filter,
         zIndex,
-        pointerEvents: 'none', // default off
       }}
-      // El content wrapper maneja pointer-events internamente si es necesario
     >
       {children}
     </motion.div>
@@ -48,33 +42,39 @@ function Section({ scrollYProgress, index, totalSections, children }) {
 /**
  * ScrollDeck
  *
- * Contenedor principal. Proporciona el espacio de scroll (altura falsa)
- * y renderiza todas las secciones como capas fixed que se transforman
- * en profundidad al scrollear.
+ * Deck de cartas con efecto parallax. Cada carta (capa fixed) se
+ * transforma suavemente al scrollear: las cartas cercanas al focus
+ * están centradas y nítidas, las lejanas se desenfocan y desplazan
+ * hacia los bordes. Ninguna desaparece — siempre hay contexto visual
+ * de dónde venís y hacia dónde vas.
  *
  * @param {Object} props
- * @param {React.ReactNode[]} props.sections - Array de componentes de sección
+ * @param {React.ReactNode[]} props.cards — Array de componentes de carta
  */
-function ScrollDeck({ sections = [] }) {
+function ScrollDeck({ cards = [] }) {
   const containerRef = useRef(null);
-  const scrollYProgress = useScrollDeck(containerRef);
-  const totalSections = sections.length;
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
+
+  const totalCards = cards.length;
 
   return (
     <div
       ref={containerRef}
       className={styles.scrollDeck}
-      style={{ height: `${totalSections * 100}vh` }}
+      style={{ height: `${totalCards * 100}vh` }}
     >
-      {sections.map((sectionContent, index) => (
-        <Section
+      {cards.map((cardContent, index) => (
+        <ParallaxLayer
           key={index}
           scrollYProgress={scrollYProgress}
           index={index}
-          totalSections={totalSections}
+          totalCards={totalCards}
         >
-          {sectionContent}
-        </Section>
+          {cardContent}
+        </ParallaxLayer>
       ))}
     </div>
   );

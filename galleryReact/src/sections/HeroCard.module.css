@@ -1,0 +1,63 @@
+/* ==========================================================================
+   HeroCard — Carta de presentación (avatar + nombre + tagline)
+   Dentro del deck parallax, se comporta como una carta más.
+   ========================================================================== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  pointer-events: auto;
+}
+
+/* ── Avatar ────────────────────────────────────────────────────────────── */
+
+.avatarWrap {
+  flex-shrink: 0;
+}
+
+/* ── Texto ─────────────────────────────────────────────────────────────── */
+
+.name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 8vw, 3.5rem);
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 0;
+  text-align: center;
+}
+
+.role {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  text-align: center;
+}
+
+.divider {
+  width: 50px;
+  height: 2px;
+  background: rgba(0, 198, 255, 0.5);
+  border: none;
+  margin: 0;
+}
+
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  color: rgba(0, 198, 255, 0.8);
+  margin: 0;
+  font-style: italic;
+  text-align: center;
+  max-width: 280px;
+}
