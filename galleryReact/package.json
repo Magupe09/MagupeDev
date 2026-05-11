@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@magupe/orbiting-avatar": "file:../packages/orbiting-avatar",
     "@react-three/drei": "^10.4.4",
     "@react-three/fiber": "^9.2.0",
     "framer-motion": "^12.23.0",

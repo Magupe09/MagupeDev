@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import OrbitingAvatar from '../OrbitingAvatar/OrbitingAvatar';
+import { OrbitingAvatar } from '@magupe/orbiting-avatar';
 import { useResponsive } from '../../hooks/useResponsive';
 import styles from './NarrativeDeck.module.css';
 

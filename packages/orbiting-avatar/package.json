@@ -1,0 +1,59 @@
+{
+  "name": "@magupe/orbiting-avatar",
+  "version": "1.0.0",
+  "description": "Avatar component with orbiting tech skill icons — like a planetary system around your profile picture",
+  "type": "module",
+  "license": "MIT",
+  "author": "MagupeDev",
+  "keywords": [
+    "react",
+    "avatar",
+    "orbiting",
+    "animation",
+    "skills",
+    "framer-motion",
+    "portfolio"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Magupe09/GalleryReact",
+    "directory": "packages/orbiting-avatar"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/orbiting-avatar.cjs",
+  "module": "./dist/orbiting-avatar.js",
+  "exports": {
+    ".": {
+      "import": "./dist/orbiting-avatar.js",
+      "require": "./dist/orbiting-avatar.cjs"
+    },
+    "./style.css": "./dist/orbiting-avatar.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "prepublishOnly": "vite build"
+  },
+  "peerDependencies": {
+    "framer-motion": ">=11.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.10.2",
+    "framer-motion": "^12.23.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "vite": "^7.0.0"
+  }
+}

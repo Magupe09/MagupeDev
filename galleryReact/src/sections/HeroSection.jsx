@@ -1,5 +1,5 @@
 import React from 'react';
-import OrbitingAvatar from '../components/OrbitingAvatar/OrbitingAvatar';
+import { OrbitingAvatar } from '@magupe/orbiting-avatar';
 import styles from './HeroSection.module.css';
 
 // --- Assets ---

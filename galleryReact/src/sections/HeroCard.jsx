@@ -1,5 +1,5 @@
 import React from 'react';
-import OrbitingAvatar from '../components/OrbitingAvatar/OrbitingAvatar';
+import { OrbitingAvatar } from '@magupe/orbiting-avatar';
 import styles from './HeroCard.module.css';
 
 // ── Assets ────────────────────────────────────────────────────────────────
@@ -30,7 +30,7 @@ function HeroCard() {
         <OrbitingAvatar
           avatarSrc={avatarImage}
           avatarAlt="MagupeDev"
-          avatarSize={200}
+          avatarSize={240}
           skills={skills}
           orbitCenter="bottom"
           shadow={{ opacity: 0.5, blur: 4, offsetY: -6 }}
