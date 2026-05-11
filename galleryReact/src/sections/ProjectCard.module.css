@@ -7,9 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 100%;
   padding: 2rem 1.5rem;
   pointer-events: auto;
 }
@@ -19,9 +17,10 @@
 .inner {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
-  max-width: 340px;
-  padding: 1.8rem 1.5rem;
+  max-width: 400px;
+  padding: 2.5rem 1.5rem;
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
@@ -57,7 +56,7 @@
 
 .number {
   font-family: 'Inter', sans-serif;
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 900;
   color: rgba(255, 255, 255, 0.025);
   position: absolute;
@@ -72,20 +71,20 @@
 
 .title {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 700;
   color: #fff;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.6rem;
   position: relative;
   z-index: 1;
 }
 
 .desc {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(0.82rem, 2vw, 0.95rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   color: rgba(255, 255, 255, 0.42);
-  line-height: 1.6;
-  margin: 0 0 0.8rem;
+  line-height: 1.7;
+  margin: 0 0 1.2rem;
   position: relative;
   z-index: 1;
 }
@@ -98,7 +97,7 @@
   color: rgba(0, 198, 255, 0.55);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   position: relative;
   z-index: 1;
 }
