@@ -107,7 +107,6 @@
 }
 
 .sectionTitle {
-  font-family: 'Inter', sans-serif;
   font-size: 0.65rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.25);
@@ -117,7 +116,6 @@
 }
 
 .aboutText {
-  font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.55);
   margin: 0;
@@ -152,7 +150,6 @@
 }
 
 .socialLabel {
-  font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
   font-weight: 500;
 }
@@ -170,7 +167,6 @@
   align-items: center;
   gap: 0.75rem;
   color: rgba(255, 255, 255, 0.45);
-  font-family: 'Inter', sans-serif;
   font-size: 0.82rem;
   text-decoration: none;
   transition: color 0.25s;
@@ -193,7 +189,6 @@ a.contactItem:hover {
 }
 
 .copyright {
-  font-family: 'Inter', sans-serif;
   font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.15);
 }

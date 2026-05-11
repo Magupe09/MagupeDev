@@ -15,7 +15,6 @@
 }
 
 .number {
-  font-family: 'Inter', sans-serif;
   font-size: clamp(5rem, 15vw, 12rem);
   font-weight: 900;
   color: rgba(255, 255, 255, 0.04);
@@ -24,7 +23,6 @@
 }
 
 .title {
-  font-family: 'Inter', sans-serif;
   font-size: clamp(1.5rem, 4vw, 3rem);
   font-weight: 700;
   color: #fff;
@@ -32,7 +30,6 @@
 }
 
 .subtitle {
-  font-family: 'Inter', sans-serif;
   font-size: clamp(0.9rem, 2vw, 1.2rem);
   color: rgba(255, 255, 255, 0.5);
   max-width: 500px;

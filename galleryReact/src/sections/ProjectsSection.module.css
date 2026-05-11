@@ -20,7 +20,6 @@
 /* ── Watermark del número de sección ───────────────────────────────────── */
 
 .number {
-  font-family: 'Inter', sans-serif;
   font-size: clamp(4rem, 18vw, 10rem);
   font-weight: 900;
   color: rgba(255, 255, 255, 0.03);
@@ -33,7 +32,6 @@
 /* ── Título ────────────────────────────────────────────────────────────── */
 
 .title {
-  font-family: 'Inter', sans-serif;
   font-size: clamp(1.4rem, 4.5vw, 2.2rem);
   font-weight: 700;
   color: #fff;
@@ -90,7 +88,6 @@
 /* ── Número watermark en la tarjeta ────────────────────────────────────── */
 
 .cardNumber {
-  font-family: 'Inter', sans-serif;
   font-size: 2.8rem;
   font-weight: 900;
   color: rgba(255, 255, 255, 0.03);
@@ -105,7 +102,6 @@
 /* ── Título del proyecto ───────────────────────────────────────────────── */
 
 .cardTitle {
-  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
@@ -117,7 +113,6 @@
 /* ── Descripción ───────────────────────────────────────────────────────── */
 
 .cardDesc {
-  font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.4);
   line-height: 1.5;
@@ -130,7 +125,6 @@
 
 .cardTech {
   display: block;
-  font-family: 'Inter', sans-serif;
   font-size: 0.66rem;
   font-weight: 500;
   color: rgba(0, 198, 255, 0.5);
@@ -147,7 +141,6 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-family: 'Inter', sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   color: rgba(0, 198, 255, 0.65);

@@ -1,5 +1,6 @@
-/* Importación de la fuente Inter desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+/* ==========================================================================
+   Global — Fuentes & Reset
+   ========================================================================== */
 
 *,
 *::before,
@@ -17,6 +18,9 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
@@ -31,6 +35,13 @@ body {
 :root {
   --color-primary: #fff;
   --color-secondary: #000;
+  --font-display: 'Bangers', cursive;
+}
+
+/* Bebas Neue para headings globales */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
 }
 
 /* ── Responsive Deck Switcher ──────────────────────────────────────────── */

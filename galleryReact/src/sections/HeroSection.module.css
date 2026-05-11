@@ -31,7 +31,6 @@
 }
 
 .name {
-  font-family: 'Inter', sans-serif;
   font-weight: 900;
   font-size: clamp(2.5rem, 8vw, 7rem);
   color: #fff;
@@ -41,7 +40,6 @@
 }
 
 .role {
-  font-family: 'Inter', sans-serif;
   font-weight: 300;
   font-size: clamp(1rem, 2.5vw, 1.8rem);
   color: rgba(255, 255, 255, 0.6);
@@ -49,7 +47,6 @@
 }
 
 .tagline {
-  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: clamp(0.85rem, 1.8vw, 1.2rem);
   color: rgba(0, 198, 255, 0.8);
@@ -76,7 +73,6 @@
   align-items: center;
   gap: 0.5rem;
   color: rgba(255, 255, 255, 0.3);
-  font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
