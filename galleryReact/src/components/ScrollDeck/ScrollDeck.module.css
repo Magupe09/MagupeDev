@@ -7,7 +7,7 @@
 
 .scrollDeck {
   position: relative;
-  background-color: #0a0a0a;
+  background-color: #0a0d0a;
 
   /* Grid de puntos sutil */
   background-image: radial-gradient(
@@ -29,8 +29,8 @@
   transform: translate(-50%, -50%);
   background: radial-gradient(
     circle,
-    rgba(0, 198, 255, 0.06) 0%,
-    rgba(0, 198, 255, 0.02) 30%,
+    rgba(81, 207, 102, 0.05) 0%,
+    rgba(81, 207, 102, 0.015) 30%,
     transparent 70%
   );
   pointer-events: none;
@@ -46,8 +46,7 @@
   right: 0;
   bottom: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items y justify-content se controlan dinámicamente desde ParallaxLayer */
   will-change: transform, opacity, filter;
   pointer-events: none;
 }

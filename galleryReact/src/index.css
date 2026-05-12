@@ -28,13 +28,16 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-primary, #fff);
+  background-color: var(--color-bg);
   overflow-x: hidden;
 }
 
 :root {
-  --color-primary: #fff;
-  --color-secondary: #000;
+  --color-yellow: 255, 217, 61;
+  --color-red: 255, 107, 107;
+  --color-green: 81, 207, 102;
+  --color-bg: #0a0d0a;
+  --color-card: rgba(20, 26, 20, 0.95);
   --font-display: 'Bangers', cursive;
 }
 
