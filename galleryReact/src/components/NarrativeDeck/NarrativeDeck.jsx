@@ -2,6 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { OrbitingAvatar } from '@magupe/orbiting-avatar';
 import { useResponsive } from '../../hooks/useResponsive';
+import CursorGlow from '../CursorGlow/CursorGlow';
 import styles from './NarrativeDeck.module.css';
 
 // ── Assets ────────────────────────────────────────────────────────────────
@@ -194,6 +195,9 @@ function NarrativeDeck() {
   // ═══════════════════════════════════════════════════════════════════════
   return (
     <div ref={containerRef} className={styles.deck} style={{ height: '600vh' }}>
+      {/* ── Efecto de estela de luz al mover el mouse ────────────────── */}
+      <CursorGlow />
+
       {/* ── Avatar ──────────────────────────────────────────────────── */}
       <motion.div
         className={styles.layer}

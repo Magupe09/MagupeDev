@@ -41,7 +41,6 @@ const cards = [
   ...projects.map((project, i) => (
     <ProjectCard
       key={project.id}
-      index={i}
       title={project.title}
       desc={project.desc}
       tech={project.tech}

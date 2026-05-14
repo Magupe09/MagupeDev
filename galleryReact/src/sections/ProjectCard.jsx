@@ -24,19 +24,15 @@ const ArrowIcon = () => (
 /**
  * ProjectCard
  *
- * Carta individual de proyecto para el deck parallax.
- * Cada proyecto tiene su propia carta y su momento de brillar al centro.
+ * Carta individual de proyecto.
  *
  * @param {Object} props
- * @param {number} props.index — Posición en el deck (para el número watermark)
  * @param {string} props.title — Nombre del proyecto
  * @param {string} props.desc — Descripción
  * @param {string} props.tech — Stack técnico
  * @param {string} props.url — Link al repo de GitHub
  */
-function ProjectCard({ index, title, desc, tech, url }) {
-  const num = String(index + 1).padStart(2, '0');
-
+function ProjectCard({ title, desc, tech, url }) {
   return (
     <div className={styles.card}>
       <a
@@ -46,8 +42,6 @@ function ProjectCard({ index, title, desc, tech, url }) {
         className={styles.inner}
         aria-label={`Ver código de ${title} en GitHub`}
       >
-        <span className={styles.number}>{num}</span>
-
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.desc}>{desc}</p>
         <span className={styles.tech}>{tech}</span>

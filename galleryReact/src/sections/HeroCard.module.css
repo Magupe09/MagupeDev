@@ -24,7 +24,7 @@
 .name {
   font-weight: 900;
   font-size: clamp(2.6rem, 9vw, 4.2rem);
-  color: #fff;
+  color: #FFC517;
   line-height: 0.9;
   letter-spacing: -0.03em;
   margin: 0;
@@ -34,7 +34,7 @@
 .role {
   font-weight: 300;
   font-size: clamp(1rem, 3vw, 1.4rem);
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(var(--color-gold), 0.7);
   margin: 0;
   text-align: center;
 }
@@ -42,7 +42,7 @@
 .divider {
   width: 50px;
   height: 2px;
-  background: rgba(255, 217, 61, 0.5);
+  background: #FFC517;
   border: none;
   margin: 0;
 }
@@ -50,7 +50,7 @@
 .tagline {
   font-weight: 400;
   font-size: clamp(0.9rem, 2.2vw, 1.15rem);
-  color: rgba(255, 217, 61, 0.8);
+  color: rgba(var(--color-gold), 0.9);
   margin: 0;
   font-style: italic;
   text-align: center;

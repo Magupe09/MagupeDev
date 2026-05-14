@@ -34,22 +34,26 @@ export function useParallaxCard(scrollYProgress, index, totalCards) {
   // ═══════════════════════════════════════════════════════════════════════
 
   // --- translateY: empuja las cartas hacia los bordes según su distancia ---
-  //     En focus (distance=0): centrada (0vh)
-  //     Lejos arriba (distance=+1): flota arriba (-60vh)
-  //     Lejos abajo (distance=-1): espera abajo (+60vh)
-  const y = useTransform(distance, [-1, 0, 1], ['60vh', '0vh', '-60vh']);
+  //     Plateau en [-0.12, 0.12]: la carta se mantiene centrada (0vh) un instante
+  //     Lejos arriba (distance=+1): flota arriba (-120vh), sale de pantalla
+  //     Lejos abajo (distance=-1): espera abajo (+120vh), sale de pantalla
+  const y = useTransform(distance, [-1, -0.12, 0.12, 1], ['120vh', '0vh', '0vh', '-120vh']);
 
   // --- scale: achica las cartas alejadas para dar profundidad ---
-  const scale = useTransform(distance, [-1, 0, 1], [0.65, 1, 0.65]);
+  //     Plateau reducido: la carta empieza a alejarse antes, evita solapamiento
+  const scale = useTransform(distance, [-1, -0.12, 0.12, 1], [0.35, 1.2, 1.2, 0.35]);
 
   // --- opacity: atenúa sin desaparecer ---
-  const opacity = useTransform(distance, [-1, 0, 1], [0.3, 1, 0.3]);
+  //     Plateau reducido al 24% central del recorrido
+  const opacity = useTransform(distance, [-1, -0.12, 0.12, 1], [0.06, 1, 1, 0.06]);
 
   // --- blur: desenfoque progresivo = sensación de profundidad ---
-  const blur = useTransform(distance, [-1, 0, 1], [8, 0, 8]);
+  //     Plateau reducido: la carta se desenfoca antes
+  const blur = useTransform(distance, [-1, -0.12, 0.12, 1], [18, 0, 0, 18]);
 
   // --- brightness: cartas lejanas más oscuras ---
-  const brightness = useTransform(distance, [-1, 0, 1], [0.45, 1, 0.45]);
+  //     Plateau reducido: la carta se oscurece antes
+  const brightness = useTransform(distance, [-1, -0.12, 0.12, 1], [0.2, 1, 1, 0.2]);
 
   // --- filter combinado: blur + brightness ---
   const filter = useTransform(

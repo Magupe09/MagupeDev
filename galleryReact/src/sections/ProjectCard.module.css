@@ -25,7 +25,7 @@
   min-height: 50vh;
   padding: 3rem 1.8rem;
   background: rgba(20, 26, 20, 0.95);
-  border: 1px solid rgba(255, 217, 61, 0.2);
+  border: 1px solid rgba(65, 209, 255, 0.35);
   border-radius: 16px;
   position: relative;
   overflow: hidden;
@@ -42,32 +42,18 @@
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(81, 207, 102, 0.06),
-    transparent 60%
+    rgba(var(--color-cyan), 0.08),
+    rgba(var(--color-purple), 0.06) 60%,
+    transparent
   );
   pointer-events: none;
   transition: opacity 0.35s;
 }
 
 .inner:active {
-  border-color: rgba(255, 107, 107, 0.5);
-  background: rgba(255, 217, 61, 0.08);
+  border-color: #FFC517;
+  background: rgba(255, 197, 23, 0.10);
   transform: scale(0.98);
-}
-
-/* ── Número watermark ──────────────────────────────────────────────────── */
-
-.number {
-  font-family: var(--font-display);
-  font-size: 8rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.06);
-  position: absolute;
-  top: -0.5rem;
-  right: 0.8rem;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
 }
 
 /* ── Contenido ─────────────────────────────────────────────────────────── */
@@ -75,7 +61,7 @@
 .title {
   font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: 700;
-  color: #fff;
+  color: #41D1FF;
   margin: 0 0 0.8rem;
   position: relative;
   z-index: 1;
@@ -83,7 +69,7 @@
 
 .desc {
   font-size: clamp(1rem, 3vw, 1.15rem);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(var(--color-gold), 0.65);
   line-height: 1.8;
   margin: 0 0 1.5rem;
   position: relative;
@@ -94,7 +80,7 @@
   display: block;
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(255, 217, 61, 0.55);
+  color: #BD34FE;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 1.2rem;
@@ -110,14 +96,14 @@
   gap: 0.35rem;
   font-size: 0.85rem;
   font-weight: 500;
-  color: rgba(255, 217, 61, 0.65);
+  color: rgba(var(--color-gold), 0.65);
   position: relative;
   z-index: 1;
   transition: color 0.25s, gap 0.25s;
 }
 
 .inner:active .linkRow {
-  color: rgba(255, 217, 61, 0.95);
+  color: rgba(var(--color-gold), 0.95);
   gap: 0.55rem;
 }
 
