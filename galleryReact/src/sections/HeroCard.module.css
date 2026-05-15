@@ -22,7 +22,7 @@
 /* ── Texto ─────────────────────────────────────────────────────────────── */
 
 .name {
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(2.6rem, 9vw, 4.2rem);
   color: #FFC517;
   line-height: 0.9;
@@ -55,4 +55,28 @@
   font-style: italic;
   text-align: center;
   max-width: 280px;
+}
+
+/* ── Link CV ───────────────────────────────────────────────────────────── */
+
+.cvLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(189, 52, 254, 0.3);
+  border-radius: 8px;
+  color: #BD34FE;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.25s, background 0.25s, border-color 0.25s, transform 0.2s;
+}
+
+.cvLink:hover {
+  color: #FFC517;
+  background: rgba(255, 197, 23, 0.08);
+  border-color: rgba(255, 197, 23, 0.35);
+  transform: translateY(-1px);
 }

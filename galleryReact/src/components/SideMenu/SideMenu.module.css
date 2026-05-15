@@ -3,46 +3,69 @@
    Glassmorphism oscuro, slide desde la derecha.
    ========================================================================== */
 
-/* ── Botón hamburger ──────────────────────────────────────────────────── */
+/* ── Botón hamburger: llaves { } ──────────────────────────────────────── */
 
 .hamburger {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 1000;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 2px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(65, 209, 255, 0.35);
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   padding: 0;
+  color: #41D1FF;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: background 0.25s, border-color 0.25s;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, z-index 0s;
 }
 
 .hamburger:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: #41D1FF;
+  border-color: #FFC517;
+  color: #FFC517;
 }
 
-.hamburgerLine {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #41D1FF;
-  border-radius: 2px;
-  transition: background 0.25s;
+/* ── Estado abierto: arriba del overlay ───────────────────────────────── */
+
+.hamburger.open {
+  z-index: 3001;
+  color: #FFC517;
+  border-color: rgba(255, 197, 23, 0.35);
+  background: rgba(255, 197, 23, 0.06);
 }
 
-.hamburger:hover .hamburgerLine {
-  background: #FFC517;
+/* ── Llaves individuales ─────────────────────────────────────────────── */
+
+.brace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.braceLeft {
+  transform-origin: 55% 50%;
+}
+
+.braceRight {
+  transform-origin: 45% 50%;
+}
+
+/* Abierto: rotan para formar una X */
+.hamburger.open .braceLeft {
+  transform: rotate(40deg);
+}
+
+.hamburger.open .braceRight {
+  transform: rotate(-40deg);
 }
 
 /* ── Overlay ───────────────────────────────────────────────────────────── */
@@ -120,6 +143,28 @@
   color: rgba(var(--color-gold), 0.65);
   margin: 0;
   line-height: 1.6;
+}
+
+.cvLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(189, 52, 254, 0.3);
+  border-radius: 8px;
+  color: #BD34FE;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.25s, background 0.25s, border-color 0.25s, transform 0.2s;
+}
+
+.cvLink:hover {
+  color: #FFC517;
+  background: rgba(255, 197, 23, 0.08);
+  border-color: rgba(255, 197, 23, 0.35);
+  transform: translateY(-1px);
 }
 
 /* ── Grid de redes sociales ────────────────────────────────────────────── */

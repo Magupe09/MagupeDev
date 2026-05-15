@@ -54,16 +54,23 @@ function SideMenu() {
 
   return (
     <>
-      {/* ── Botón hamburger ─────────────────────────────────────────── */}
+      {/* ── Botón hamburger: llaves { } rotativas ──────────────────── */}
       <button
-        className={styles.hamburger}
-        onClick={open}
-        aria-label="Abrir menú"
+        className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}
+        onClick={isOpen ? close : open}
+        aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
         type="button"
       >
-        <span className={styles.hamburgerLine} />
-        <span className={styles.hamburgerLine} />
-        <span className={styles.hamburgerLine} />
+        <span className={`${styles.brace} ${styles.braceLeft}`}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M16 4C11 4 7 7 7 10.5C7 11.8 8.2 12 8.2 12C8.2 12 7 12.2 7 13.5C7 17 11 20 16 20" />
+          </svg>
+        </span>
+        <span className={`${styles.brace} ${styles.braceRight}`}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 4C13 4 17 7 17 10.5C17 11.8 15.8 12 15.8 12C15.8 12 17 12.2 17 13.5C17 17 13 20 8 20" />
+          </svg>
+        </span>
       </button>
 
       {/* ── Overlay + Panel ──────────────────────────────────────────── */}
@@ -120,6 +127,21 @@ function SideMenu() {
                   solo funcionan, sino que se sienten bien. Especializado en
                   React, TypeScript y arquitecturas escalables.
                 </p>
+                <a
+                  href="/MagupeDev/Mauricio_Gualteros_Pereira_Developer.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.cvLink}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                  <span>Hoja de Vida</span>
+                </a>
               </div>
 
               {/* ── Redes sociales ──────────────────────────────────── */}
