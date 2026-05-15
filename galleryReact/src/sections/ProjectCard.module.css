@@ -117,3 +117,11 @@
 .inner:active .linkRow svg {
   transform: translateX(3px);
 }
+
+/* ── Mobile ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .inner {
+    min-height: 35vh;
+  }
+}
