@@ -22,8 +22,6 @@
   cursor: pointer;
   padding: 0;
   color: #41D1FF;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   transition: background 0.25s, border-color 0.25s, color 0.25s, z-index 0s;
 }
 
@@ -74,9 +72,7 @@
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 /* ── Panel lateral ─────────────────────────────────────────────────────── */
@@ -92,10 +88,8 @@
   display: flex;
   flex-direction: column;
   padding: 2rem 1.5rem;
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(10, 10, 10, 0.98);
   border-left: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   overflow-y: auto;
 }
 

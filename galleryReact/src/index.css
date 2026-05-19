@@ -50,13 +50,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── Responsive Deck Switcher ──────────────────────────────────────────── */
-
-/* Mobile: mostrar ScrollDeck, ocultar NarrativeDeck */
-.deck-desktop { display: none; }
-.deck-mobile  { display: block; }
-
-/* Tablet y Desktop (≥768px): mostrar NarrativeDeck, ocultar ScrollDeck */
-@media (min-width: 768px) {
-  .deck-desktop { display: block; }
-  .deck-mobile  { display: none; }
-}
+/* El switcheo mobile/desktop ahora se maneja con React.lazy + renderizado
+   condicional en App.jsx. Solo se monta el deck que corresponde al viewport. */

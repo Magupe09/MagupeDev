@@ -1,9 +1,10 @@
 import React from 'react';
 import { OrbitingAvatar } from '@magupe/orbiting-avatar';
+import { useResponsive } from '../hooks/useResponsive';
 import styles from './HeroCard.module.css';
 
 // ── Assets ────────────────────────────────────────────────────────────────
-import avatarImage from '../assets/AvatarPortafolio2.png';
+import avatarImage from '../assets/AvatarPortafolio2.webp';
 import htmlLogo from '../assets/sKills/HTML5.png';
 import typescriptLogo from '../assets/sKills/Typescript.png';
 import figmaLogo from '../assets/sKills/figma.png';
@@ -23,18 +24,20 @@ const skills = [
 // ── Componente ─────────────────────────────────────────────────────────────
 
 function HeroCard() {
+  const { isMobile } = useResponsive();
+
   return (
     <div className={styles.card}>
-      {/* Avatar con skills orbitando */}
+      {/* Avatar con skills orbitando — parámetros reducidos en mobile */}
       <div className={styles.avatarWrap}>
         <OrbitingAvatar
           avatarSrc={avatarImage}
           avatarAlt="MagupeDev"
-          avatarSize={240}
+          avatarSize={isMobile ? 200 : 240}
           skills={skills}
           orbitCenter="bottom"
           shadow={{ opacity: 0.5, blur: 4, offsetY: -6 }}
-          trail={{ copies: 5, opacity: 0.3, minScale: 0.1 }}
+          trail={{ copies: isMobile ? 2 : 5, opacity: 0.3, minScale: 0.1 }}
         />
       </div>
 

@@ -1,12 +1,15 @@
 // src/App.jsx
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './index.css';
+import { useResponsive } from './hooks/useResponsive';
 import ScrollDeck from './components/ScrollDeck/ScrollDeck';
-import NarrativeDeck from './components/NarrativeDeck/NarrativeDeck';
 import SideMenu from './components/SideMenu/SideMenu';
 
 import HeroCard from './sections/HeroCard';
 import ProjectCard from './sections/ProjectCard';
+
+// ── Lazy: NarrativeDeck solo se carga en tablet/desktop (≥768px) ────────
+const NarrativeDeck = lazy(() => import('./components/NarrativeDeck/NarrativeDeck'));
 
 // ── Datos de proyectos (misma fuente que NarrativeDeck) ────────────────────
 
@@ -38,7 +41,7 @@ const projects = [
 
 const cards = [
   <HeroCard key="hero" />,
-  ...projects.map((project, i) => (
+  ...projects.map((project) => (
     <ProjectCard
       key={project.id}
       title={project.title}
@@ -52,18 +55,24 @@ const cards = [
 // ── App ────────────────────────────────────────────────────────────────────
 
 function App() {
+  const { isMobile } = useResponsive();
+
   return (
     <>
-      {/* Tablet y Desktop (≥768px): narrativa de scroll con elementos que se posicionan */}
-      <div className="deck-desktop">
-        <NarrativeDeck />
-      </div>
+      {/* Tablet y Desktop (≥768px): narrativa de scroll. Solo se monta si es necesario. */}
+      {!isMobile && (
+        <Suspense fallback={null}>
+          <NarrativeDeck />
+        </Suspense>
+      )}
 
-      {/* Mobile (<768px): deck de cartas con parallax + menú lateral */}
-      <div className="deck-mobile">
-        <ScrollDeck cards={cards} />
-        <SideMenu />
-      </div>
+      {/* Mobile (<768px): deck de cartas con scroll nativo + menú lateral */}
+      {isMobile && (
+        <>
+          <ScrollDeck cards={cards} />
+          <SideMenu />
+        </>
+      )}
     </>
   );
 }

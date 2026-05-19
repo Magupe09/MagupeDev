@@ -6,31 +6,37 @@ import styles from './CursorGlow.module.css';
  * Cada capa persigue al cursor con distinta velocidad (lerp),
  * creando una estela de luz multicolor sobre el fondo negro.
  *
+ * Sin filter:blur — el suavizado se logra con gradientes multi-stop.
+ * spread: [inicio, medio, final] como fracciones 0→1 para los stops del gradiente.
+ *
  * Orden: lento (estela exterior) → rápido (núcleo brillante).
  */
 const LAYERS = [
-  { size: 700, blur: 110, opacity: 0.08, speed: 0.03, color: '65,209,255' },  // cyan trail — slowest
-  { size: 450, blur: 75,  opacity: 0.10, speed: 0.06, color: '189,52,254' },  // purple trail
-  { size: 250, blur: 45,  opacity: 0.14, speed: 0.10, color: '255,197,23' },  // gold mid
-  { size: 120, blur: 20,  opacity: 0.22, speed: 0.18, color: '255,197,23' },  // gold
-  { size: 40,  blur: 6,   opacity: 0.40, speed: 0.35, color: '255,255,255' }, // white core — fastest
+  { size: 920, opacity: 0.08, speed: 0.03, color: '65,209,255', stops: [0, 0.22, 0.48, 0.8] },  // cyan trail — slowest
+  { size: 600, opacity: 0.10, speed: 0.06, color: '189,52,254', stops: [0, 0.25, 0.52, 0.8] },  // purple trail
+  { size: 330, opacity: 0.14, speed: 0.10, color: '255,197,23', stops: [0, 0.28, 0.55, 0.8] },  // gold mid
+  { size: 150, opacity: 0.22, speed: 0.18, color: '255,197,23', stops: [0, 0.30, 0.55, 0.8] },  // gold
+  { size: 50,  opacity: 0.40, speed: 0.35, color: '255,255,255', stops: [0, 0.35, 0.60, 0.8] }, // white core — fastest
 ];
 
 /**
  * CursorGlow
  *
  * Efecto de estela de luz que sigue al mouse/touch compuesto por
- * múltiples capas radiales con distinto blur, tamaño y velocidad.
- * Cada capa interpola su posición hacia el cursor/dedo con lerp,
- * lo que genera el efecto "trailing" natural.
+ * múltiples capas radiales. Cada capa interpola su posición hacia
+ * el cursor/dedo con lerp, generando el efecto "trailing" natural.
+ *
+ * Optimizado para Safari: usa transform:translate3d en vez de left/top,
+ * gradientes multi-stop en vez de filter:blur, y threshold de movimiento
+ * para evitar renders innecesarios.
  *
  * Desktop: sigue el mouse (mousemove).
  * Mobile:  sigue el dedo al deslizar (touchmove).
  */
 function CursorGlow() {
-  const targetRef = useRef({ x: -300, y: -300 });
+  const targetRef = useRef({ x: -500, y: -500 });
   const positionsRef = useRef(
-    LAYERS.map(() => ({ x: -300, y: -300 })),
+    LAYERS.map(() => ({ x: -500, y: -500 })),
   );
   const [, forceRender] = useState(0);
 
@@ -61,18 +67,21 @@ function CursorGlow() {
     }
 
     let rafId;
+    const MOVEMENT_THRESHOLD = 2; // px — ignora micro-movimientos
+
     const animate = () => {
       const target = targetRef.current;
       let changed = false;
 
       positionsRef.current.forEach((pos, i) => {
         const speed = LAYERS[i].speed;
-        const newX = pos.x + (target.x - pos.x) * speed;
-        const newY = pos.y + (target.y - pos.y) * speed;
+        const dx = target.x - pos.x;
+        const dy = target.y - pos.y;
 
-        if (Math.abs(pos.x - newX) > 0.1 || Math.abs(pos.y - newY) > 0.1) {
-          pos.x = newX;
-          pos.y = newY;
+        // Solo actualizar si el cursor se movió significativamente
+        if (Math.abs(dx) > MOVEMENT_THRESHOLD || Math.abs(dy) > MOVEMENT_THRESHOLD) {
+          pos.x += dx * speed;
+          pos.y += dy * speed;
           changed = true;
         }
       });
@@ -95,20 +104,30 @@ function CursorGlow() {
 
   return (
     <div className={styles.glow} aria-hidden="true">
-      {positionsRef.current.map((pos, i) => (
-        <div
-          key={i}
-          className={styles.layer}
-          style={{
-            left: pos.x,
-            top: pos.y,
-            width: LAYERS[i].size,
-            height: LAYERS[i].size,
-            background: `radial-gradient(circle, rgba(${LAYERS[i].color},${LAYERS[i].opacity}) 0%, transparent 70%)`,
-            filter: `blur(${LAYERS[i].blur}px)`,
-          }}
-        />
-      ))}
+      {positionsRef.current.map((pos, i) => {
+        const layer = LAYERS[i];
+        const [s0, s1, s2, s3] = layer.stops;
+        return (
+          <div
+            key={i}
+            className={styles.layer}
+            style={{
+              width: layer.size,
+              height: layer.size,
+              transform: `translate3d(calc(${pos.x}px - 50%), calc(${pos.y}px - 50%), 0)`,
+              background: `
+                radial-gradient(
+                  circle at center,
+                  rgba(${layer.color},${layer.opacity}) ${s0 * 100}%,
+                  rgba(${layer.color},${layer.opacity * 0.5}) ${s1 * 100}%,
+                  rgba(${layer.color},${layer.opacity * 0.1}) ${s2 * 100}%,
+                  transparent ${s3 * 100}%
+                )
+              `,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }

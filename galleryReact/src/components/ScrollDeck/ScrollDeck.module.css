@@ -26,4 +26,6 @@
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
 }

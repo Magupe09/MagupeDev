@@ -21,6 +21,7 @@
   justify-content: center;
   pointer-events: none;
   z-index: 1;
+  will-change: transform, opacity;
 }
 
 /* ── Bloque de texto (nombre + bio + redes) ────────────────────────────── */
@@ -133,6 +134,8 @@
   text-decoration: none;
   cursor: pointer;
   transition: border-color 0.3s, background 0.3s;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 200px;
 }
 
 .card:hover {

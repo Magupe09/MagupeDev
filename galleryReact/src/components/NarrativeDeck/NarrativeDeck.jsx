@@ -6,7 +6,7 @@ import CursorGlow from '../CursorGlow/CursorGlow';
 import styles from './NarrativeDeck.module.css';
 
 // ── Assets ────────────────────────────────────────────────────────────────
-import avatarImage from '../../assets/AvatarPortafolio2.png';
+import avatarImage from '../../assets/AvatarPortafolio2.webp';
 import htmlLogo from '../../assets/sKills/HTML5.png';
 import typescriptLogo from '../../assets/sKills/Typescript.png';
 import figmaLogo from '../../assets/sKills/figma.png';
@@ -114,6 +114,9 @@ const projects = [
 //   │  └──────┘  └──────┘  └──────┘       │
 //   └──────────────────────────────────────┘
 // ───────────────────────────────────────────────────────────────────────────
+//
+// Optimizado para Safari: sin filter:blur ni filter:brightness en MotionValues.
+// La profundidad se logra exclusivamente con scale + opacity (GPU-accelerated).
 
 function NarrativeDeck() {
   const { isDesktop } = useResponsive();
@@ -138,7 +141,7 @@ function NarrativeDeck() {
       xEnd: isDesktop ? '26vw' : '20vw',
       yEnd: isDesktop ? '-18vh' : '-20vh',
     },
-    // Proyectos: posición X final de cada card (separación amplia para evitar overlap)
+    // Proyectos: posición X final de cada card
     projects: isDesktop
       ? ['-30vw', '0vw', '30vw']
       : ['-28vw', '0vw', '28vw'],
@@ -157,20 +160,14 @@ function NarrativeDeck() {
   const textX = useTransform(scrollYProgress, [0.15, 0.40], ['10vw', cfg.text.xEnd]);
   const textY = useTransform(scrollYProgress, [0.15, 0.40], ['6vh', cfg.text.yEnd]);
   const textOpacity = useTransform(scrollYProgress, [0.15, 0.22, 0.40], [0, 0.8, 1]);
-  const textBlur = useTransform(scrollYProgress, [0.15, 0.40], [10, 0]);
-  const textBrightness = useTransform(scrollYProgress, [0.15, 0.40], [0.4, 1]);
-  const textFilter = useTransform(
-    [textBlur, textBrightness],
-    ([b, br]) => `blur(${b}px) brightness(${br})`,
-  );
 
   // ═══════════════════════════════════════════════════════════════════════
   //  Proyectos — cada uno con su ventana de animación
   // ═══════════════════════════════════════════════════════════════════════
   const projectPhases = [
-    { start: 0.35, end: 0.50, x: cfg.projects[0] },  // izquierda
-    { start: 0.50, end: 0.65, x: cfg.projects[1] },  // centro
-    { start: 0.65, end: 0.80, x: cfg.projects[2] },  // derecha
+    { start: 0.35, end: 0.50, x: cfg.projects[0] },
+    { start: 0.50, end: 0.65, x: cfg.projects[1] },
+    { start: 0.65, end: 0.80, x: cfg.projects[2] },
   ];
 
   const projectMotionValues = projectPhases.map((phase) => {
@@ -181,13 +178,7 @@ function NarrativeDeck() {
       [0, 0.6, 1],
     );
     const scale = useTransform(scrollYProgress, [phase.start, phase.end], [0.8, 1]);
-    const blur = useTransform(scrollYProgress, [phase.start, phase.end], [16, 0]);
-    const brightness = useTransform(scrollYProgress, [phase.start, phase.end], [0.3, 1]);
-    const filter = useTransform(
-      [blur, brightness],
-      ([b, br]) => `blur(${b}px) brightness(${br})`,
-    );
-    return { x: phase.x, y, opacity, scale, filter };
+    return { x: phase.x, y, opacity, scale };
   });
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -222,7 +213,6 @@ function NarrativeDeck() {
           x: textX,
           y: textY,
           opacity: textOpacity,
-          filter: textFilter,
         }}
       >
         <div className={styles.textBlock}>
@@ -277,7 +267,6 @@ function NarrativeDeck() {
             y: projectMotionValues[i].y,
             scale: projectMotionValues[i].scale,
             opacity: projectMotionValues[i].opacity,
-            filter: projectMotionValues[i].filter,
           }}
         >
           <a

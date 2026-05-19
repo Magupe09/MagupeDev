@@ -21,19 +21,21 @@ export function useScrollDeck(containerRef) {
  * useSectionProgress
  *
  * Dado el progreso global del scroll, el índice de la sección y el total,
- * devuelve MotionValues de scale, blur, opacity y brightness
+ * devuelve MotionValues de scale y opacity
  * para el efecto de "profundidad".
  *
  * Cada sección tiene una "ventana activa" de ancho 1/totalSections.
  * Dentro de esa ventana:
- *   - 0% → 30%  : entrada  (scale sube, blur y opacity bajan)
+ *   - 0% → 30%  : entrada  (scale sube, opacity sube)
  *   - 30% → 70% : activa   (todo estable)
- *   - 70% → 100%: salida   (scale baja, blur y opacity suben)
+ *   - 70% → 100%: salida   (scale baja, opacity baja)
+ *
+ * Optimizado: sin filter:blur — la profundidad se logra con scale + opacity.
  *
  * @param {MotionValue<number>} scrollYProgress
  * @param {number} index
  * @param {number} totalSections
- * @returns {{ scale, opacity, blur, brightness, filterValue, rawProgress }}
+ * @returns {{ scale, opacity, zIndex, rawProgress }}
  */
 export function useSectionProgress(scrollYProgress, index, totalSections) {
   const sectionStart = index / totalSections;
@@ -46,7 +48,6 @@ export function useSectionProgress(scrollYProgress, index, totalSections) {
     [0, 1],
   );
 
-  // Curvas de animación
   // La primera sección (index === 0) arranca totalmente visible:
   // no tiene fase de "entrada", solo se anima al salir.
   const isFirst = index === 0;
@@ -61,24 +62,9 @@ export function useSectionProgress(scrollYProgress, index, totalSections) {
     isFirst ? [0, 0.8, 1] : [0, 0.2, 0.8, 1],
     isFirst ? [1, 1, 0] : [0, 1, 1, 0],
   );
-  const blur = useTransform(
-    rawProgress,
-    isFirst ? [0, 0.7, 1] : [0, 0.3, 0.7, 1],
-    isFirst ? [0, 0, 4] : [4, 0, 0, 4],
-  );
-  const brightness = useTransform(
-    rawProgress,
-    isFirst ? [0, 0.7, 1] : [0, 0.3, 0.7, 1],
-    isFirst ? [1, 1, 0.6] : [0.6, 1, 1, 0.6],
-  );
-
-  // Filtro CSS combinado (blur + brightness)
-  const filterValue = useTransform([blur, brightness], ([b, br]) =>
-    `blur(${b}px) brightness(${br})`,
-  );
 
   // z-index: pico en el centro de la ventana
   const zIndex = useTransform(rawProgress, [0, 0.5, 1], [index + 1, index + 100, index + 1]);
 
-  return { scale, opacity, blur, brightness, filterValue, zIndex, rawProgress };
+  return { scale, opacity, zIndex, rawProgress };
 }
