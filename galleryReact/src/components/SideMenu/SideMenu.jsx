@@ -128,7 +128,7 @@ function SideMenu() {
                   React, TypeScript y arquitecturas escalables.
                 </p>
                 <a
-                  href="/MagupeDev/Mauricio_Gualteros_Pereira_Developer.pdf"
+                  href="MagupeDev/Mauricio_Gualteros_Pereira_Developer.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.cvLink}

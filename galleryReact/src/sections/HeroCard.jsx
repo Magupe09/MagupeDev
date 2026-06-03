@@ -49,7 +49,7 @@ function HeroCard() {
         Transformo ideas en experiencias digitales
       </p>
       <a
-        href="/MagupeDev/Mauricio_Gualteros_Pereira_Developer.pdf"
+        href="MagupeDev/Mauricio_Gualteros_Pereira_Developer.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className={styles.cvLink}
