@@ -89,6 +89,13 @@ const projects = [
     tech: 'Next.js · TypeScript · PWA',
     url: 'https://github.com/Magupe09/pizza-app',
   },
+  {
+    id: 4,
+    title: 'BiciControl',
+    desc: 'App para registro de bicicletas en centros comerciales. Control de acceso y monitoreo en tiempo real.',
+    tech: 'JavaScript · CSS · HTML',
+    url: 'https://github.com/Magupe09/BiciControl',
+  },
 ];
 
 // ── Storyboard ────────────────────────────────────────────────────────────
@@ -96,23 +103,24 @@ const projects = [
 //  0% ─────  Avatar enorme centrado (único elemento visible)
 //  0% → 25%  Avatar se encoge y desliza al cuadrante superior izquierdo
 // 15% → 40%  Texto (nombre + bio + redes) aparece y se desliza al superior derecho
-// 35% → 50%  Proyecto 1 sube desde abajo al footer
-// 50% → 65%  Proyecto 2 sube desde abajo al footer
-// 65% → 80%  Proyecto 3 sube desde abajo al footer
-// 80% →100%  Todo asentado – layout final visible
+// 35% → 48%  Proyecto 1 sube desde abajo al footer
+// 48% → 61%  Proyecto 2 sube desde abajo al footer
+// 61% → 74%  Proyecto 3 sube desde abajo al footer
+// 74% → 87%  Proyecto 4 sube desde abajo al footer
+// 87% →100%  Todo asentado – layout final visible
 //
 // Layout final (tablet 768-1023px / desktop ≥1024px):
-//   ┌──────────────────────────────────────┐
-//   │  ┌──────────┐  ┌──────────────────┐  │  60vh
-//   │  │  Avatar  │  │  MagupeDev       │  │
-//   │  │ + skills │  │  Mi historia     │  │
-//   │  │          │  │  + redes         │  │
-//   │  └──────────┘  └──────────────────┘  │
-//   ├──────────────────────────────────────┤
-//   │  ┌──────┐  ┌──────┐  ┌──────┐       │  40vh
-//   │  │ Pro 1│  │ Pro 2│  │ Pro 3│       │
-//   │  └──────┘  └──────┘  └──────┘       │
-//   └──────────────────────────────────────┘
+//   ┌──────────────────────────────────────────┐
+//   │  ┌──────────┐  ┌──────────────────────┐  │  60vh
+//   │  │  Avatar  │  │  MagupeDev           │  │
+//   │  │ + skills │  │  Mi historia         │  │
+//   │  │          │  │  + redes             │  │
+//   │  └──────────┘  └──────────────────────┘  │
+//   ├──────────────────────────────────────────┤
+//   │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐       │  40vh
+//   │  │ P 1 │ │ P 2 │ │ P 3 │ │ P 4 │       │
+//   │  └─────┘ └─────┘ └─────┘ └─────┘       │
+//   └──────────────────────────────────────────┘
 // ───────────────────────────────────────────────────────────────────────────
 //
 // Optimizado para Safari: sin filter:blur ni filter:brightness en MotionValues.
@@ -143,8 +151,8 @@ function NarrativeDeck() {
     },
     // Proyectos: posición X final de cada card
     projects: isDesktop
-      ? ['-30vw', '0vw', '30vw']
-      : ['-28vw', '0vw', '28vw'],
+      ? ['-34vw', '-11vw', '11vw', '34vw']
+      : ['-30vw', '-10vw', '10vw', '30vw'],
   }), [isDesktop]);
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -165,9 +173,10 @@ function NarrativeDeck() {
   //  Proyectos — cada uno con su ventana de animación
   // ═══════════════════════════════════════════════════════════════════════
   const projectPhases = [
-    { start: 0.35, end: 0.50, x: cfg.projects[0] },
-    { start: 0.50, end: 0.65, x: cfg.projects[1] },
-    { start: 0.65, end: 0.80, x: cfg.projects[2] },
+    { start: 0.35, end: 0.48, x: cfg.projects[0] },
+    { start: 0.48, end: 0.61, x: cfg.projects[1] },
+    { start: 0.61, end: 0.74, x: cfg.projects[2] },
+    { start: 0.74, end: 0.87, x: cfg.projects[3] },
   ];
 
   const projectMotionValues = projectPhases.map((phase) => {
