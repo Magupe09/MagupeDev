@@ -33,8 +33,6 @@
   text-decoration: none;
   transition: border-color 0.35s, background 0.35s, transform 0.35s;
   -webkit-tap-highlight-color: transparent;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 400px;
 }
 
 /* Brillo diagonal */
