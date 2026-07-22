@@ -35,6 +35,13 @@ const projects = [
     tech: 'Next.js · TypeScript · PWA',
     url: 'https://github.com/Magupe09/pizza-app',
   },
+  {
+    id: 4,
+    title: 'BiciControl',
+    desc: 'App para registro de bicicletas en centros comerciales. Control de acceso y monitoreo en tiempo real.',
+    tech: 'JavaScript · CSS · HTML',
+    url: 'https://github.com/Magupe09/BiciControl',
+  },
 ];
 
 // ── Deck de cartas: Hero + cada proyecto es una carta independiente ────────
