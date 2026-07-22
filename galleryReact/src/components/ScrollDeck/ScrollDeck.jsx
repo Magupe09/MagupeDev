@@ -14,7 +14,7 @@ import styles from './ScrollDeck.module.css';
  */
 function ScrollDeck({ cards = [] }) {
   return (
-    <div className={styles.scrollDeck}>
+    <div className={styles.scrollDeck} data-card-count={cards.length}>
       <CursorGlow />
 
       {cards.map((cardContent, index) => (
