@@ -2,6 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { OrbitingAvatar } from '@magupe/orbiting-avatar';
 import { useResponsive } from '../../hooks/useResponsive';
+import projects from '../../data/projects';
 import CursorGlow from '../CursorGlow/CursorGlow';
 import styles from './NarrativeDeck.module.css';
 
@@ -65,37 +66,6 @@ const skills = [
   { name: 'HTML', icon: htmlLogo, distance: 1.0, speed: 11, selfRotate: 2.5, direction: -1 },
   { name: 'TypeScript', icon: typescriptLogo, distance: 0.85, speed: 9, selfRotate: 1.8, direction: 1 },
   { name: 'SQL', icon: sqlLogo, distance: 1.2, speed: 13, selfRotate: 3.5, direction: -1 },
-];
-
-const projects = [
-  {
-    id: 1,
-    title: 'Gual-Tech',
-    desc: 'App para gestión de máquinas industriales en tiempo real. Monitoreo, alertas y dashboard.',
-    tech: 'React · TypeScript · Vercel',
-    url: 'https://github.com/Magupe09/Gual-Tech',
-  },
-  {
-    id: 2,
-    title: 'Sintenedor.com',
-    desc: 'App web para dark kitchen. Pedidos online, menú dinámico y gestión en tiempo real.',
-    tech: 'React · TypeScript · PostgreSQL',
-    url: 'https://github.com/Magupe09/Sintenedor.com',
-  },
-  {
-    id: 3,
-    title: 'Pizza App',
-    desc: 'PWA con Next.js para emprendimiento online. Catálogo, pedidos y notificaciones push.',
-    tech: 'Next.js · TypeScript · PWA',
-    url: 'https://github.com/Magupe09/pizza-app',
-  },
-  {
-    id: 4,
-    title: 'BiciControl',
-    desc: 'App para registro de bicicletas en centros comerciales. Control de acceso y monitoreo en tiempo real.',
-    tech: 'JavaScript · CSS · HTML',
-    url: 'https://github.com/Magupe09/BiciControl',
-  },
 ];
 
 // ── Storyboard ────────────────────────────────────────────────────────────
